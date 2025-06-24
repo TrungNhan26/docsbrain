@@ -288,7 +288,7 @@ const fetchUserDocuments = async () => {
   }
 
   try {
-    const response = await axios.get(`http://14.225.210.28:8000/documents/user/${userId}`, {
+    const response = await axios.get(`https://docsbrain.id.vn/documents/user/${userId}`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     documents.value = response.data; // Gán dữ liệu gốc, không sắp xếp ở đây
@@ -336,7 +336,7 @@ const openDocument = async (docId) => {
   }
 
   try {
-    const response = await axios.get(`http://14.225.210.28:8000/documents/${docId}/content`, {
+    const response = await axios.get(`https://docsbrain.id.vn/documents/${docId}/content`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -376,7 +376,7 @@ const deleteDocumentConfirmed = async () => {
   }
 
   try {
-    await axios.delete(`http://14.225.210.28:8000/documents/${documentToDelete.value.id}`, {
+    await axios.delete(`https://docsbrain.id.vn/documents/${documentToDelete.value.id}`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     // Cập nhật UI: lọc document đã xóa ra khỏi mảng gốc
@@ -405,7 +405,7 @@ const triggerOpenHistoryModal = async (doc) => {
       return;
   }
   try {
-      const response = await axios.get(`http://14.225.210.28:8000/documents/${doc.id}/history`, {
+      const response = await axios.get(`https://docsbrain.id.vn/documents/${doc.id}/history`, {
           headers: { 'Authorization': `Bearer ${token}` }
       });
       // API nên trả về lịch sử đã sắp xếp, hoặc sắp xếp ở đây
@@ -438,7 +438,7 @@ const restoreFromHistory = async (historyId, mainDocumentId) => {
     restoringHistoryId.value = historyId;
     const token = localStorage.getItem('token');
     try {
-        await axios.post(`http://14.225.210.28:8000/documents/restore/${historyId}`, 
+        await axios.post(`https://docsbrain.id.vn/documents/restore/${historyId}`, 
             { document_id: mainDocumentId }, 
             { headers: { 'Authorization': `Bearer ${token}` }
         });

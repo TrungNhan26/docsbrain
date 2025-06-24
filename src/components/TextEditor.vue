@@ -396,7 +396,7 @@ const getEditorContent = () => {
 };
 
 const sendContentToBackend = async (htmlContent) => {
-  const response = await fetch('http://14.225.210.28:8000/create-doc-ai', {
+  const response = await fetch('https://docsbrain.id.vn/create-doc-ai', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -434,7 +434,7 @@ const askAI = async (question) => {
   form.append("question", question);
   form.append("session_id", sessionId.value);
 
-  const res = await fetch("http://14.225.210.28:8000/chat-ai", {
+  const res = await fetch("https://docsbrain.id.vn/chat-ai", {
     method: "POST",
     body: form
   });
@@ -648,7 +648,7 @@ const sendAudioToBackend = async (wavBlob) => {
     formData.append('file', wavBlob, 'recording.wav');
 
     try {
-        const response = await axios.post('http://14.225.210.28:8000/transcribe/', formData, {
+        const response = await axios.post('https://docsbrain.id.vn/transcribe/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -705,7 +705,7 @@ const saveOrUpdateDocument = async () => {
       formData.append('document_id', currentDocId);
     }
 
-    const response = await axios.post('http://14.225.210.28:8000/documents/save', formData, {
+    const response = await axios.post('https://docsbrain.id.vn/documents/save', formData, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'multipart/form-data'
@@ -787,7 +787,7 @@ const speakText = async () => {
 
     console.log("Đang gửi yêu cầu đến API /text-to-speech...");
     // Đảm bảo bạn dùng axios và cấu hình responseType: 'blob'
-    const response = await axios.post('http://14.225.210.28:8000/text-to-speech', formData, {
+    const response = await axios.post('https://docsbrain.id.vn/text-to-speech', formData, {
       responseType: 'blob' // CỰC KỲ QUAN TRỌNG!
     });
     console.log("Đã nhận được phản hồi từ API. Status:", response.status);
@@ -842,7 +842,7 @@ const loadDocumentHistory = async () => {
   
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get(`http://14.225.210.28:8000/documents/${documentId.value}/history`, {
+    const response = await axios.get(`https://docsbrain.id.vn/documents/${documentId.value}/history`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -862,7 +862,7 @@ const restoreFromHistory = async (historyId) => {
     
     // Lấy nội dung từ history
     const response = await axios.get(
-      `http://14.225.210.28:8000/documents/history/content/${historyId}`,
+      `https://docsbrain.id.vn/documents/history/content/${historyId}`,
       {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -921,7 +921,7 @@ const summarizeText = async () => {
 
   isSummarizing.value = true;
   try {
-    const response = await fetch('http://14.225.210.28:8000/summarize', {
+    const response = await fetch('https://docsbrain.id.vn/summarize', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -944,7 +944,7 @@ const fetchSuggestion = async (prompt) => {
 
   try {
 
-    const response = await fetch('http://14.225.210.28:8000/generate', {
+    const response = await fetch('https://docsbrain.id.vn/generate', {
 
       method: 'POST',
 
