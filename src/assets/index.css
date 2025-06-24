@@ -1,0 +1,697 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #202124;
+  background-color: #f0f2f5;
+}
+
+/* Main Container Layout */
+.docs-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f8f9fa;
+}
+
+/* Sidebar Assistant (Right Side) */
+.chat-sidebar {
+  width: 280px;
+  background-color: #ffffff;
+  border-left: 1px solid #e0e0e0;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: -2px 0 4px rgba(0,0,0,0.05);
+  z-index: 10;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+
+.chat-msg {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.chat-input {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.chat-input button {
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background-color: #16a34a;
+}
+
+/* Main Content (Left Side) */
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+   overflow-y: auto;
+}
+
+/* Header */
+.docs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  z-index: 5;
+}
+
+.header-left, .header-center, .header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-left {
+  flex: 1;
+  min-width: 200px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  color: #5f6368;
+  font-weight: 500;
+}
+
+.logo .material-icons {
+  color: #4285F4;
+  margin-right: 8px;
+}
+
+.file-name-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 400px;
+}
+
+.file-name-input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.file-name-input:hover {
+  background-color: #f1f3f4;
+}
+
+.file-name-input:focus {
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Zoom Center Controls */
+.header-center {
+  justify-content: center;
+  flex: 1;
+}
+
+.zoom-control {
+  display: flex;
+  align-items: center;
+  background-color: #f1f3f4;
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+.zoom-button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #5f6368;
+  border-radius: 4px;
+}
+
+.zoom-value {
+  font-size: 13px;
+  margin: 0 10px;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Header Buttons */
+.header-right {
+  justify-content: flex-end;
+  flex: 1;
+  gap: 8px;
+}
+
+.header-button {
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #5f6368;
+  padding: 0 12px;
+  font-size: 14px;
+  gap: 6px;
+}
+
+.header-button:hover {
+  background-color: #f1f3f4;
+}
+
+.share-button {
+  background-color: #e8f0fe;
+  color: #1967d2;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f1f3f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Toolbars */
+.main-toolbar, .format-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.format-toolbar {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  flex-wrap: wrap;
+}
+
+.toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+}
+
+.toolbar-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #5f6368;
+}
+
+.toolbar-button:hover {
+  background-color: #f1f3f4;
+}
+
+.toolbar-button.active {
+  background-color: #e8f0fe;
+  color: #1967d2;
+}
+.sticky-toolbars-container {
+  position: sticky; /* Bật chế độ "dính" */
+  top: 0;           /* Dính vào cạnh trên cùng của khung chứa nó (.main-container) */
+  z-index: 10;      /* Đảm bảo nó luôn nằm trên các nội dung khác khi cuộn */
+  background-color: white; /* Đặt nền trắng để văn bản không bị lộ ra phía sau khi cuộn */
+}
+/* Editor */
+.editor-wrapper {
+
+  background-color: #f0f2f5;
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.page {
+  width: 794px;
+  min-height: 1123px;
+  background: white;
+  padding: 48px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  margin-bottom: 24px;
+}
+
+.docs-editor:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Status Bar */
+.status-bar {
+   position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+  font-size: 13px;
+  color: #5f6368;
+  gap: 16px;
+}
+
+.cursor-position {
+  margin-left: auto;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.modal-actions button:first-child {
+  background-color: #2196f3;
+  color: white;
+}
+
+.modal-actions button:last-child {
+  background-color: #e0e0e0;
+}
+
+.summary-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #22c55e;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+}
+
+.summary-button:hover {
+  background-color: #16a34a;
+}
+
+.summary-icon {
+  width: 16px;
+  height: 16px;
+  stroke: white;
+}
+
+.chat-toggle-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: #6366f1; /* indigo */
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.chat-toggle-button:hover {
+  background-color: #4f46e5;
+}
+
+.chat-toggle-button .material-icons {
+  font-size: 18px;
+}
+
+.history-list {
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 1rem 0;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.history-item:hover {
+  background-color: #f5f5f5;
+}
+
+.history-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-info span:first-child {
+  font-weight: 500;
+}
+
+.history-info span:last-child {
+  font-size: 0.8rem;
+  color: #666;
+}
+.document-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #16a34a;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.document-card {
+  position: relative; /* Thêm vào để loading hiển thị đúng */
+  /* ... các style khác giữ nguyên */
+}
+.page.relative {
+  position: relative; /* Đảm bảo div cha có position relative */
+}
+
+.ghost-text {
+  position: absolute;
+  color: #a0a0a0; 
+  pointer-events: none;
+  white-space: pre-wrap; 
+  word-wrap: break-word; 
+  z-index: 10;
+
+  /* Sẽ được JS ghi đè */
+  font-family: inherit; 
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+
+  margin: 0;
+  box-sizing: border-box;
+  display: block; 
+}
+.save-success-message {
+display: flex;
+align-items: center;
+color: #5f6368;
+font-family: 'Google Sans', Roboto, Arial, sans-serif;
+font-size: 14px;
+margin-right: 16px;
+animation: fadeInOut 2s ease-in-out;
+}
+
+.save-success-message .material-icons {
+font-size: 20px;
+margin-right:-40px;
+color: #1a73e8; /* Màu xanh của Google */
+}
+
+@keyframes fadeInOut {
+0% { opacity: 0; }
+20% { opacity: 1; }
+80% { opacity: 1; }
+100% { opacity: 0; }
+}
+/* --- CSS NÂNG CẤP CHO MODAL --- */
+/* --- BẢNG MÀU & BIẾN CSS CHO CHỦ ĐỀ MỚI --- */
+:root {
+  --primary-start: #6d28d9; /* Màu tím đậm */
+  --primary-end: #4f46e5;   /* Màu Indigo */
+  --text-black: #111827;
+  --text-secondary: #4b5563;
+  --bg-secondary: #f3f4f6;
+  --border-color: #e5e7eb;
+}
+
+/* Lớp phủ nền mờ & Hiệu ứng kính */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 24, 39, 0.3); /* Nền tối hơn một chút */
+  backdrop-filter: blur(8px); /* HIỆU ỨNG KÍNH MỜ */
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Nội dung chính của Modal - Phong cách Glassmorphism */
+.modal-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Header: Chứa tiêu đề và nút đóng */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.375rem; /* To hơn một chút */
+  font-weight: 700;
+  color: var(--text-black);
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s, transform 0.2s;
+}
+.close-button:hover {
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+/* Body: Chứa spinner hoặc textarea */
+.modal-body {
+  margin: 8px 0;
+}
+
+/* Spinner được nâng cấp với Gradient */
+.spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  /* Dùng conic-gradient để tạo vòng xoay nhiều màu */
+  background: conic-gradient(from 0deg at 50% 50%, var(--primary-start), var(--primary-end), #0000);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 6px), #000 0);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 6px), #000 0);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.transcription-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-black);
+  resize: vertical;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.transcription-textarea:focus {
+  outline: none;
+  border-color: var(--primary-end);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3); /* Dùng màu Indigo cho glow */
+}
+
+/* Actions: Chứa các nút bấm */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Nút bấm được thiết kế lại hoàn toàn */
+.modal-actions button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600; /* Đậm hơn */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-actions button:active {
+  transform: scale(0.97);
+}
+
+/* Nút chính (Primary) với Gradient và hiệu ứng "nổi" */
+.button-primary {
+  color: rgb(12, 12, 12);
+  background-image: linear-gradient(to right, var(--text-primary), var(--bg-secondary));
+  box-shadow: 0 4px 15px rgba(109, 40, 217, 0.3);
+}
+.button-primary:hover {
+  transform: translateY(-2px); /* Hiệu ứng nổi lên */
+  box-shadow: 0 7px 20px rgba(109, 40, 217, 0.4);
+}
+.button-primary:disabled {
+  background-image: none;
+  background-color: #d1d5db;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Nút phụ (Secondary) - Phong cách "ghost" */
+.button-secondary {
+  background-color: transparent;
+  color: var(--text-secondary);
+  box-shadow: inset 0 0 0 1px var(--border-color); /* Viền mảnh */
+}
+.button-secondary:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Hiệu ứng Transition (Giữ nguyên, vẫn rất tốt) */
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.modal-fade-enter-active .modal-content,
+.modal-fade-leave-active .modal-content {
+  transition: all 0.3s ease;
+}
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+.modal-fade-enter-from .modal-content,
+.modal-fade-leave-to .modal-content {
+  transform: translateY(20px) scale(0.98);
+}
