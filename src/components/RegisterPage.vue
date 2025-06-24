@@ -102,7 +102,7 @@ const router = useRouter()
 
 const register = async () => {
   try {
-    const response = await api.post('http://localhost:8000/register', {
+    const response = await api.post('http://14.225.210.28:8000/register', {
       name: name.value,
       email: email.value,
       password: password.value
